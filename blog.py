@@ -1,17 +1,23 @@
+from post import Post
+
+
 class Blog:
     def __init__(self, title, author):
         self.title = title
         self.author = author
-        self.post = []
+        self.posts = []
 
     def __repr__(self):
-        pass
+        return f"Post {self.title} was created by {self.author}. " \
+               f"{self.author} has {len(self.posts)} " \
+               f"post{'s' if len(self.posts) != 1 else ''}."
 
     def create_post(self, title, content):
-        pass
+        self.posts.append(Post(title, content))
 
     def json(self):
-        j_blog = {
+        return {
             "title": self.title,
-            "content": self.content,
+            "author": self.author,
+            "posts": [post.json() for post in self.posts],
         }
