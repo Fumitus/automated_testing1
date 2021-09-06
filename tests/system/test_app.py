@@ -11,3 +11,16 @@ class AppTest(TestCase):
         with patch('builtins.print') as mocked_print:
             app.print_blogs()
             mocked_print.assert_called_with('- Post Test was created by Test author. Test author has 0 posts.')
+
+    def test_print_blogs_prompt(self):
+        with patch('app.print_blogs') as mocked_print_blogs:
+            with patch('builtins.input', return_value='q'):
+                app.menu()
+                mocked_print_blogs.assert_called()
+
+    def test_prints_prompt(self):
+        with patch('builtins.input') as mocked_input:
+            app.menu()
+            mocked_input.assert_called_with(app.MENU_PROMPT)
+
+
