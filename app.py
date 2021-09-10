@@ -4,7 +4,8 @@ from blog import Blog
 
 MENU_PROMPT = 'Enter "c" to create a blog, "l" to list blogs, "r" to read one, "p" to create a post, or "q" to quit: '
 
-blogs = dict() # blog_name: Blog objects
+# blog_name: Blog objects
+blogs = dict()
 
 
 def menu():
@@ -57,5 +58,10 @@ def print_post(post):
 
 
 def ask_create_post():
-    pass
+    blog_name = input('Enter blog title you want add a post: ')
+    title = input('Enter a post title: ')
+    content = input('Enter post content: ')
+
+    blogs[blog_name].create_post(title, content)
+
 
